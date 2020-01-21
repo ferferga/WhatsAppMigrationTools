@@ -34,9 +34,7 @@ Head over to [the Android-x86 project official's page](https://www.android-x86.o
 Create a virtual machine where the guest operating system is **Other Linux 32-bit**, attaching the ISO you previously downloaded to it. Set a big amount of storage for it (at least, the same amount of storage that your Android phone has. Set also a **minimum of 2 GB of RAM** and a **bridged network adapter**
 
 <p align="center">
-    <video autoplay muted loop preload="none">
-        <source src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/vm_create.mp4">
-    </video>
+  <img src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/vm_create.gif">
 </p>
 
 Now, we can install Android x86 in the virtual machine. Power it on, navigate to ``Advanced Options`` > ``Auto-Installation`` and confirm that you want to continue. After finishing the installation, choose ``Reboot``.
@@ -48,9 +46,7 @@ Running Android x86 in a VM needs some tweaks, so you need to force VESA mode fi
 Press ``Enter`` and then ``b`` to boot. **You must repeat this procedure in GRUB everytime you boot the VM, otherwise it won't boot**
 
 <p align="center">
-    <video autoplay muted loop preload="none">
-        <source src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/vm_installation.mp4">
-    </video>
+  <img src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/vm_installation.gif">
 </p>
 
 #### Finishing with the Android x86 setup
@@ -105,9 +101,7 @@ You now need to get those files (normally 3) out of your guest Android VM into y
 If you don't want the hassle and geeky way of doing it, you can simply upload the files to Google Drive or Telegram and download them in your computer.
 
 <p align="center">
-    <video autoplay muted loop preload="none">
-        <source src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/database_extraction.mp4">
-    </video>
+  <img src="https://github.com/ferferga/WhatsAppMigrationTools/raw/master/images/database_extraction.gif">
 </p>
 
 ### Glossary and needed files
