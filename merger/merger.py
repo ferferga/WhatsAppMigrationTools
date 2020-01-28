@@ -1566,7 +1566,7 @@ try:
 except KeyboardInterrupt:
     pass
 
-print("\nScript finished! Thanks for using!")
+getpass("\nScript finished! Thanks for using!\nPress ENTER to exit")
 
 # SELECT NOT EXISTS (SELECT * FROM replies EXCEPT SELECT * FROM definitive_replies) AND NOT EXISTS (SELECT * FROM definitive_replies EXCEPT SELECT * FROM replies);
 # msgstore.execute("CREATE TRIGGER IF NOT EXISTS _temporal_migration_trigger_ AFTER UPDATE ON messages_quotes BEGIN UPDATE messages SET quoted_row_id = new.quoted_row_id WHERE key_id=old.key_id; END")
