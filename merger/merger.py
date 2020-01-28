@@ -340,6 +340,10 @@ try:
         for index, key in enumerate(quoted_keys, 0):
             if key not in keys_quoted_msgstore:
                 row = msg_quotes_rows[str(key)]
+                # Here we skip an strange media type used by WhatsApp in some messages of all formats. So no way to handle it in a 100% confident way. 
+                # All messages with that media type ended up crashing the app during my testing
+                if int(row[10]) >= 1000:
+                    continue
                 if row[31] != 0:
                     reg = (None, row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14],
                         row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29],
@@ -359,6 +363,9 @@ try:
         for index, key in enumerate(alt_keys, 0):
             if key not in keys_msgstore:
                 row = msg_rows[str(key)]
+                # Same as above
+                if int(row[10]) >= 1000:
+                    continue
                 if row[31] != 0:
                     reg = (None, row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14],
                         row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29],
