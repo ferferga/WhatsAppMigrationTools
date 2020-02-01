@@ -136,7 +136,7 @@ This part commits all the pending changes that were not commited by WhatsApp and
 
 ### Calls
 
-**Requires original msgstore.db and calls.db**
+**Requires original msgstore.db, msgstore.db and calls.db**
 
 This part moves call logs from WP to the Android database.
 

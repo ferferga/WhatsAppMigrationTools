@@ -64,9 +64,11 @@ except KeyboardInterrupt:
 try:
     print("\n\nWe start by moving calls. Press Control-C if you want to skip to fixing mentions\n")
     db_original = connect_database("Type the path of the calls.db (Windows Phone DB) file: ")
-    db_msgstore = connect_database("Type the path of the ORIGINAL msgstore.db (Android DB) file: ")        
+    alt_msgstore = connect_database("Type the path of msgstore.db (The file produced by my other script) file: ")
+    db_msgstore = connect_database("Type the path of the ORIGINAL msgstore.db (Android DB) file: ")    
     llamadas = db_original.cursor()
     msgstore = db_msgstore.cursor()
+    alt = alt_msgstore.cursor()
     print("Processing data into the temporary database...")
     llamadas.execute("SELECT COUNT(*) FROM CallLog")
     callcount = llamadas.fetchone()[0]
@@ -98,13 +100,23 @@ try:
                 video_call = 0
             result = row[7]
             bytes_transferred = row[8] + row[9]
-            msgstore.execute("SELECT _id FROM jid WHERE raw_string = '" + jid + "'")
-            jid_id = msgstore.fetchone()[0]
+            try:
+                msgstore.execute("SELECT _id FROM jid WHERE raw_string = '" + jid + "'")
+                jid_id = msgstore.fetchone()[0]
+            except TypeError:
+                alt.execute("SELECT * FROM jid WHERE raw_string = '" + jid + "'")
+                for r in alt:
+                    reg5 = (r[1], r[2], r[3], r[4], r[5])
+                    msgstore.execute("INSERT INTO jid(user,server,agent,type,raw_string) VALUES(?,?,?,?,?)", reg5)
+                db_msgstore.commit()
+                msgstore.execute("SELECT _id FROM jid WHERE raw_string = '" + jid + "'")
+                jid_id = msgstore.fetchone()[0]
             reg = (row[0], jid_id, from_me, call_id, -1, timestamp, video_call, duration, result, bytes_transferred)
             tmp_cursor.execute("INSERT INTO call_log VALUES(?,?,?,?,?,?,?,?,?,?)", reg)
             loopCount = loopCount + 1
             bar.update(loopCount)
         tmp_db.commit()
+    alt_msgstore.close()
     print("\n\nRemoving temporal database and moving changes to the original database...\n")
     msgstore.execute("SELECT * FROM call_log")
     for row in msgstore:
