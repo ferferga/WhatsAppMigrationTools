@@ -65,7 +65,7 @@ This might be what you are looking for if:
 
 * **You did use WinWazzapMigrator to move from WP to Android**: This is what I did, and what was tested
 
-* **You moved to Android starting from scratch there a while ago, and now you want to bring back all your old WP messages to your current WhatsApp installation.**: This will likely be successful, although it wasn't tested.
+* **You moved to Android starting from scratch there a while ago, and now you want to bring back all your old WP messages to your current WhatsApp installation.**: This will likely be successful, although it wasn't tested by me (although [reports claim it works perfectly](https://github.com/ferferga/WhatsAppMigrationTools/issues/1#issuecomment-581165616))
 
 * **You still didn't move from WP and don't want to buy WinWazzapMigrator**: My process is much more difficult and less user-friendly than theirs, but it will likely succeed as well, although it isn't tested. I would say however that this has less chances of being successful than the 2nd case. But worth trying I suppose, you will learn a lot along the way :).
 

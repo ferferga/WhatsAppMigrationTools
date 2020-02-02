@@ -613,6 +613,8 @@ try:
     msgcount = msgcount + msgstore.fetchone()[0]
     msgstore.execute("SELECT COUNT(message_row_id) FROM message_media")
     msgcount = msgcount + msgstore.fetchone()[0] * 2
+    msgstore.execute("SELECT COUNT(key_id) FROM messages_quotes WHERE key_id NOT IN (SELECT key_id FROM messages)")
+    msgcount = msgcount + msgstore.fetchone()[0]
     print("\nNow backing up data into the temporary database...\n")
     # Sometimes, quotes from groups into private chats and deleted messages might be still in messages_quotes while not present in messages, that means that we need
     # to take care of them individually, in different loops, instead of doing them all at once in a single loop.
@@ -683,7 +685,7 @@ try:
                 tmp.execute("INSERT INTO keys_relationship VALUES(?,?,?,?,?)", reg2)
             except:
                 pass
-        msgstore.execute("SELECT key_id, _id FROM messages WHERE key_id NOT IN (SELECT key_id FROM messages)")
+        msgstore.execute("SELECT key_id, _id FROM messages_quotes WHERE key_id NOT IN (SELECT key_id FROM messages)")
         for row in msgstore:
             try:
                 new_quote_id = new_quotes_keys[row[0]]
@@ -1061,15 +1063,6 @@ try:
             try:
                 reg = (keys_relationship[int(row[0])], row[0])
                 msgstore2.execute("UPDATE message_forwarded SET message_row_id = ? WHERE message_row_id = ?", reg)
-            except:
-                pass
-            loopcount = loopcount + 1
-            bar.update(loopcount)
-        msgstore.execute("SELECT message_row_id FROM message_future")
-        for row in msgstore:
-            try:
-                reg = (keys_relationship[int(row[0])], row[0])
-                msgstore2.execute("UPDATE message_future SET message_row_id = ? WHERE message_row_id = ?", reg)
             except:
                 pass
             loopcount = loopcount + 1
