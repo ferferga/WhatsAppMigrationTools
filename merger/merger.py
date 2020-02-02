@@ -251,6 +251,7 @@ try:
             loopCount = loopCount + 1
             bar.update(loopCount)
         db_msgstore.commit()
+    db_msgstore.close()
     print("Fixing mentions part completed successfully")
 except KeyboardInterrupt:
     pass
