@@ -6,7 +6,7 @@ the Android's schema.
 ## What do I need?
 
 You need two databases: **messages.db** and **calls.db**, which you can get
-using this [nice tutorial](https://www.winwazzapmigrator.com/faq/windows-how-extract-messagesdb) from WinWazzapMigrator.
+using this [nice tutorial](https://web.archive.org/web/20201118142346/https://www.winwazzapmigrator.com/faq/windows-how-extract-messagesdb) from WinWazzapMigrator.
 
 **calls.db** is not mentioned anywhere in the tutorial (as WinWazzapMigrator doesn't move them), however, it's located in **messages.db**'s directory, so you will spot it easily.
 
